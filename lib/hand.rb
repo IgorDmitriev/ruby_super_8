@@ -25,6 +25,10 @@ class Hand
     @cards = []
   end
 
+  def display
+    puts "Your cards: #{self.to_s}"
+  end
+
   def to_s
     @cards.map.with_index do |card, idx|
       "[#{idx}]: #{card.to_s}"

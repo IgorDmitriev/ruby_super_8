@@ -11,6 +11,10 @@ class Player
     display_current_status(stock)
     card = get_card_input
     stock.put_card(card)
+    if card.value == :eight
+      suit = get_next_suit
+      stock.set_suit(suit)
+    end
   rescue => e
     puts e.message
     @hand.add(card)
@@ -42,6 +46,12 @@ class Player
 
   private
 
+  def get_next_suit
+    puts "Choose suit: [s]pades [c]lubs [h]earts [d]iamonds"
+    print "> "
+    gets.chomp[0]
+  end
+
   def get_card_input
     card_idx = get_input
     @hand.get_card(card_idx)
@@ -52,8 +62,8 @@ class Player
   end
 
   def display_current_status(stock)
-    puts "Last card in stock: #{stock.last_card}"
-    puts "Your cards: #{@hand.to_s}"
+    stock.display
+    @hand.display
   end
 
   def get_input

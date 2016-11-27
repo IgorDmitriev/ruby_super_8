@@ -35,6 +35,11 @@ class Deck
 
   # Returns an array of cards to the bottom of the deck.
   def return(cards)
-    @cards += cards
+    case cards
+    when Card then @cards << cards
+    when Array then @cards += cards
+    else
+      raise 'Only cards can be returned to the deck.'
+    end
   end
 end

@@ -14,6 +14,7 @@ class Hand
 
   def add(card)
     @cards << card
+    card
   end
 
   def get_card(idx)

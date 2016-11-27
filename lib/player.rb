@@ -7,17 +7,54 @@ class Player
     @score = 0
   end
 
-  def play_turn(stock)
+  def play_turn(deck, stock)
     display_current_status(stock)
+    case get_action
+    when :take_card
+      card = take_card(deck)
+      raise "You got: #{card.to_s}"
+    when :play_card
+      if can_play_card?(stock)
+        play_card(stock)
+      else
+        raise "You don't have any valid cards for next move. Please take card from deck."
+      end
+    end
+  rescue => e
+    puts e.message
+    retry
+  end
+
+  def can_play_card?(stock)
+    @hand.cards.any? { |card| stock.valid_move?(card) }
+  end
+
+  def play_card(stock)
     card = get_card_input
-    stock.put_card(card)
     if card.value == :eight
       suit = get_next_suit
       stock.set_suit(suit)
     end
+    stock.put_card(card)
   rescue => e
     puts e.message
     @hand.add(card)
+    retry
+  end
+
+  def get_card
+
+  end
+
+  def get_action
+    puts "Choose your action: [p]lay card; [t]ake card from deck"
+    case gets.chomp.downcase[0]
+    when 'p' then :play_card
+    when 't' then :take_card
+    else raise "\nInvalid action\n"
+    end
+  rescue => e
+    print e.message
     retry
   end
 

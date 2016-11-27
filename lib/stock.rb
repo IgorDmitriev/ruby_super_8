@@ -31,15 +31,13 @@ class Stock
   def put_card(card)
     raise 'Invalid move' unless valid_move?(card)
     @cards << card
-    @new_suit = nil
+    @new_suit = nil unless card.value == :eight
   end
 
   def set_initial(card)
     raise '8 can not be initial card' if card.value == :eight
     @cards << card
   end
-
-  private
 
   def valid_move?(card)
     return true if card.value == :eight

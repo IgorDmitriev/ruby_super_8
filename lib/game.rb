@@ -10,13 +10,20 @@ class Game
     @players = players
   end
 
+  def request_card_from_deck(player)
+    player.take_card(@deck)
+  end
+
   def play_super_eight
     @deck = Deck.new
     @stock = Stock.new
+    # players.each { |player| player.game = self }
     until game_over?
       play_round
     end
   end
+
+  private
 
   def play_round
     @deck.shuffle!
@@ -27,7 +34,7 @@ class Game
       puts ""
       puts "#{current_player.name} moves...."
       puts ""
-      current_player.play_turn(@stock)
+      current_player.play_turn(deck, @stock)
       break if current_player.empty?
       next_player!
     end
@@ -36,12 +43,6 @@ class Game
     take_cards_from_players_to_deck
     take_cards_from_stock_to_deck
   end
-
-  def request_card_from_deck(player)
-    player.push_card_from(deck)
-  end
-
-  private
 
   def deal_five_cards_to_each_player
     5.times do

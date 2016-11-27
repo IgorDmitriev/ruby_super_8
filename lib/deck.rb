@@ -30,7 +30,7 @@ class Deck
   # Takes `n` cards from the top of the deck.
   def take(n = 1)
     raise 'not enough cards' if @cards.count < n
-    @cards.shift(n)
+    n == 1 ? @cards.shift : @cards.shift(n)
   end
 
   # Returns an array of cards to the bottom of the deck.

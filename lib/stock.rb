@@ -4,6 +4,12 @@ class Stock
     @new_suit = nil
   end
 
+  def return_cards(deck)
+    deck.return(@cards)
+    @cards = []
+    @new_suit = nil
+  end
+
   def last_card
     @cards.last
   end

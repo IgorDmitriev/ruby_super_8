@@ -17,7 +17,6 @@ class Game
   def play_super_eight
     @deck = Deck.new
     @stock = Stock.new
-    # players.each { |player| player.game = self }
     until game_over?
       play_round
     end
@@ -26,6 +25,7 @@ class Game
   private
 
   def play_round
+    display_current_status
     @deck.shuffle!
     deal_five_cards_to_each_player
     set_initial_card_for_stock
@@ -42,6 +42,24 @@ class Game
     calculate_points
     take_cards_from_players_to_deck
     take_cards_from_stock_to_deck
+  end
+
+  def display_current_status
+    players.each do |player|
+      puts "#{player.name} => #{player.score}"
+    end
+  end
+
+  def calculate_points
+    players.each(&:calculate_points)
+  end
+
+  def take_cards_from_players_to_deck
+    players.each { |player| player.return_cards(deck) }
+  end
+
+  def take_cards_from_stock_to_deck
+    @stock.return_cards(deck)
   end
 
   def deal_five_cards_to_each_player

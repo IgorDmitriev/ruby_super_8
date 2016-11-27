@@ -9,6 +9,7 @@ class Hand
   end
 
   def points
+    return 0 if @cards.empty?
     @cards.map(&:super8_value).inject(:+)
   end
 

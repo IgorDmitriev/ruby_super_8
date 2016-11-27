@@ -22,6 +22,7 @@ class Player
     end
   rescue => e
     puts e.message
+    return if e.message == 'not enough cards'
     retry
   end
 
@@ -39,6 +40,7 @@ class Player
   rescue => e
     puts e.message
     @hand.add(card)
+    display_current_status
     retry
   end
 
@@ -63,13 +65,13 @@ class Player
     @hand.add(card)
   end
 
-  def add_score(num)
-    @score += num
+  def calculate_points
+    @score += @hand.points
   end
 
   def return_cards(deck)
     cards = @hand.cards
-    deck.return_cards(cards)
+    deck.return(cards)
     @hand.clear
   end
 

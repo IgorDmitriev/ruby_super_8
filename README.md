@@ -5,10 +5,15 @@ The goal is to be the first player to get rid of all the cards in his hand.
 
 ## Card Values/Scoring
 The player who is the first to have no cards left wins the game. The winning player collects from each other player the value of the cards remaining in that player’s hand as follows:
+
 `Each eight = 50 points`
+
 `Each K, Q, J or 10 = 10 points`
+
 `Each ace = 1 point`
+
 `Each other card is the pip value`
+
 
 ## The Play
 Starting to the dealer’s left, each player must place one card face up on the starter pile. Each card played (other than an eight) must match the card showing on the starter pile, either in suit or in denomination.

@@ -13,7 +13,7 @@ class Game
   end
 
   def play_round
-    shuffle_deck
+    @deck.shuffle!
     push_five_cards_to_each_player_from(deck)
     set_initial_card_for_stock
 

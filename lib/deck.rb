@@ -18,13 +18,17 @@ class Deck
     @cards = cards
   end
 
+  def shuffle!
+    @cards.shuffle!
+  end
+
   # Returns the number of cards in the deck.
   def count
     @cards.count
   end
 
   # Takes `n` cards from the top of the deck.
-  def take(n)
+  def take(n = 1)
     raise 'not enough cards' if @cards.count < n
     @cards.shift(n)
   end
